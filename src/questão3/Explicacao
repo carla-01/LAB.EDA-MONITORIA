@@ -1,0 +1,47 @@
+# Questão 3 - Análise sobre uso de Árvores em Tabela Hash
+
+## ✅ Vantagens de usar árvores (BST/AVL) em vez de listas:
+
+### Melhor Complexidade:
+- **Busca**: O(log n) em árvores vs O(n) em listas
+- **Inserção**: O(log n) em árvores balanceadas vs O(1) no início de listas
+- **Remoção**: O(log n) em árvores vs O(n) em listas
+
+### Balanceamento Automático:
+- Árvores AVL mantêm balanceamento, garantindo desempenho ótimo
+- Evita degeneração para lista encadeada (que ocorre em BST não balanceada)
+
+### Elementos Ordenados:
+- Árvores mantêm os elementos naturalmente ordenados
+- Útil para operações que necessitam de ordenação
+
+## ❌ Desvantagens:
+
+### Complexidade de Implementação:
+- Árvores são mais complexas que listas encadeadas simples
+- Requer algoritmos de rotação (AVL) ou rebalanceamento
+
+### Overhead de Memória:
+- Cada nó de árvore requer mais ponteiros (left, right, parent, height)
+- Consumo maior de memória comparedo com listas simples
+
+### Custo Operacional:
+- Rotações em AVL adicionam overhead nas operações de inserção/remoção
+- Para poucos elementos, o custo pode não justificar o benefício
+
+## 🎯 Cenários Recomendados:
+
+### Quando USAR árvores:
+- Alta taxa de colisão na mesma posição da tabela hash
+- Aplicações com muitas operações de busca
+- Quando需要 manter elementos ordenados
+- Fator de carga elevado (> 0.7)
+
+### Quando NÃO USAR árvores:
+- Poucas colisões esperadas
+- Implementações que priorizam simplicidade
+- Restrições severas de memória
+- Tabelas hash com bom espalhamento
+
+## 📊 Conclusão:
+A substituição é **viável técnicamente** e traz benefícios de desempenho em cenários de alta colisão, mas introduz complexidade adicional. Para a maioria dos casos práticos, **listas encadeadas simples são suficientes** e mais adequadas pela simplicidade de implementação.
