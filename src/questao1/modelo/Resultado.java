@@ -32,8 +32,8 @@ public class Resultado {
     }
 
     public static void imprimirCabecalho() {
-        System.out.println("| Algoritmo     | Entrada ordenada | Entrada ordenada | Entrada aleatória | Entrada aleatória | Entrada inversa   | Entrada inversa   |");
-        System.out.println("|               | n=20            | n=2000          | n=20             | n=2000           | n=20             | n=2000           |");
-        System.out.println("|---------------|-----------------|-----------------|------------------|------------------|------------------|------------------|");
+        System.out.println("| Algoritmo     | Entrada ordenada     | Entrada ordenada   | Entrada aleatória  | Entrada aleatória    | Entrada inversa             | Entrada inversa  |");
+        System.out.println("|               | n=20                 | n=2000             | n=20               | n=2000               | n=20                        | n=2000           |");
+        System.out.println("|---------------|----------------------|--------------------|--------------------|----------------------|-----------------------------|------------------|");
     }
 }
