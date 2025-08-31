@@ -1,9 +1,10 @@
 package questao1;
 
+import java.util.function.Consumer;
 import questao1.algoritmos.*;
-import questao1.util.GeradorArray;
-import questao1.util.Cronometro;
 import questao1.modelo.Resultado;
+import questao1.util.Cronometro;
+import questao1.util.GeradorArray;
 
 public class Main {
     private static final int NUM_EXECUCOES = 10;
@@ -42,12 +43,12 @@ public class Main {
                                                  int[] array2000Crescente, int[] array2000Decrescente, int[] array2000Aleatorio) {
         Resultado resultado = new Resultado("Insertion sort");
 
-        double tempo20Crescente = testarAlgoritmo(array20Crescente.clone(), InsertionSort::ordenar);
-        double tempo2000Crescente = testarAlgoritmo(array2000Crescente.clone(), InsertionSort::ordenar);
-        double tempo20Aleatorio = testarAlgoritmo(array20Aleatorio.clone(), InsertionSort::ordenar);
-        double tempo2000Aleatorio = testarAlgoritmo(array2000Aleatorio.clone(), InsertionSort::ordenar);
-        double tempo20Decrescente = testarAlgoritmo(array20Decrescente.clone(), InsertionSort::ordenar);
-        double tempo2000Decrescente = testarAlgoritmo(array2000Decrescente.clone(), InsertionSort::ordenar);
+        double tempo20Crescente = testarAlgoritmo(array20Crescente.clone(), arr -> InsertionSort.ordenar(arr));
+        double tempo2000Crescente = testarAlgoritmo(array2000Crescente.clone(), arr -> InsertionSort.ordenar(arr));
+        double tempo20Aleatorio = testarAlgoritmo(array20Aleatorio.clone(), arr -> InsertionSort.ordenar(arr));
+        double tempo2000Aleatorio = testarAlgoritmo(array2000Aleatorio.clone(), arr -> InsertionSort.ordenar(arr));
+        double tempo20Decrescente = testarAlgoritmo(array20Decrescente.clone(), arr -> InsertionSort.ordenar(arr));
+        double tempo2000Decrescente = testarAlgoritmo(array2000Decrescente.clone(), arr -> InsertionSort.ordenar(arr));
 
         resultado.setTempos(tempo20Crescente, tempo2000Crescente, tempo20Aleatorio, tempo2000Aleatorio,
                 tempo20Decrescente, tempo2000Decrescente);
@@ -58,12 +59,12 @@ public class Main {
                                              int[] array2000Crescente, int[] array2000Decrescente, int[] array2000Aleatorio) {
         Resultado resultado = new Resultado("Merge sort");
 
-        double tempo20Crescente = testarAlgoritmo(array20Crescente.clone(), MergeSort::ordenar);
-        double tempo2000Crescente = testarAlgoritmo(array2000Crescente.clone(), MergeSort::ordenar);
-        double tempo20Aleatorio = testarAlgoritmo(array20Aleatorio.clone(), MergeSort::ordenar);
-        double tempo2000Aleatorio = testarAlgoritmo(array2000Aleatorio.clone(), MergeSort::ordenar);
-        double tempo20Decrescente = testarAlgoritmo(array20Decrescente.clone(), MergeSort::ordenar);
-        double tempo2000Decrescente = testarAlgoritmo(array2000Decrescente.clone(), MergeSort::ordenar);
+        double tempo20Crescente = testarAlgoritmo(array20Crescente.clone(), arr -> MergeSort.ordenar(arr));
+        double tempo2000Crescente = testarAlgoritmo(array2000Crescente.clone(), arr -> MergeSort.ordenar(arr));
+        double tempo20Aleatorio = testarAlgoritmo(array20Aleatorio.clone(), arr -> MergeSort.ordenar(arr));
+        double tempo2000Aleatorio = testarAlgoritmo(array2000Aleatorio.clone(), arr -> MergeSort.ordenar(arr));
+        double tempo20Decrescente = testarAlgoritmo(array20Decrescente.clone(), arr -> MergeSort.ordenar(arr));
+        double tempo2000Decrescente = testarAlgoritmo(array2000Decrescente.clone(), arr -> MergeSort.ordenar(arr));
 
         resultado.setTempos(tempo20Crescente, tempo2000Crescente, tempo20Aleatorio, tempo2000Aleatorio,
                 tempo20Decrescente, tempo2000Decrescente);
@@ -74,24 +75,24 @@ public class Main {
                                                 int[] array2000Crescente, int[] array2000Decrescente, int[] array2000Aleatorio) {
         Resultado resultado = new Resultado("Counting sort");
 
-        double tempo20Crescente = testarAlgoritmo(array20Crescente.clone(), CountingSort::ordenar);
-        double tempo2000Crescente = testarAlgoritmo(array2000Crescente.clone(), CountingSort::ordenar);
-        double tempo20Aleatorio = testarAlgoritmo(array20Aleatorio.clone(), CountingSort::ordenar);
-        double tempo2000Aleatorio = testarAlgoritmo(array2000Aleatorio.clone(), CountingSort::ordenar);
-        double tempo20Decrescente = testarAlgoritmo(array20Decrescente.clone(), CountingSort::ordenar);
-        double tempo2000Decrescente = testarAlgoritmo(array2000Decrescente.clone(), CountingSort::ordenar);
+        double tempo20Crescente = testarAlgoritmo(array20Crescente.clone(), arr -> CountingSort.ordenar(arr));
+        double tempo2000Crescente = testarAlgoritmo(array2000Crescente.clone(), arr -> CountingSort.ordenar(arr));
+        double tempo20Aleatorio = testarAlgoritmo(array20Aleatorio.clone(), arr -> CountingSort.ordenar(arr));
+        double tempo2000Aleatorio = testarAlgoritmo(array2000Aleatorio.clone(), arr -> CountingSort.ordenar(arr));
+        double tempo20Decrescente = testarAlgoritmo(array20Decrescente.clone(), arr -> CountingSort.ordenar(arr));
+        double tempo2000Decrescente = testarAlgoritmo(array2000Decrescente.clone(), arr -> CountingSort.ordenar(arr));
 
         resultado.setTempos(tempo20Crescente, tempo2000Crescente, tempo20Aleatorio, tempo2000Aleatorio,
                 tempo20Decrescente, tempo2000Decrescente);
         return resultado;
     }
 
-    private static double testarAlgoritmo(int[] array, Runnable algoritmo) {
+    private static double testarAlgoritmo(int[] array, Consumer<int[]> algoritmo) {
         long tempoTotal = 0;
 
         for (int i = 0; i < NUM_EXECUCOES; i++) {
             int[] copia = array.clone();
-            tempoTotal += Cronometro.medirTempo(() -> algoritmo.run());
+            tempoTotal += Cronometro.medirTempo(() -> algoritmo.accept(copia));
         }
 
         return tempoTotal / (double) NUM_EXECUCOES;
