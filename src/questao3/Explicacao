@@ -7,10 +7,6 @@
 - **Inserção**: O(log n) em árvores balanceadas vs O(1) no início de listas
 - **Remoção**: O(log n) em árvores vs O(n) em listas
 
-### Balanceamento Automático:
-- Árvores AVL mantêm balanceamento, garantindo desempenho ótimo
-- Evita degeneração para lista encadeada (que ocorre em BST não balanceada)
-
 ### Elementos Ordenados:
 - Árvores mantêm os elementos naturalmente ordenados
 - Útil para operações que necessitam de ordenação
@@ -19,16 +15,13 @@
 
 ### Complexidade de Implementação:
 - Árvores são mais complexas que listas encadeadas simples
-- Requer algoritmos de rotação (AVL) ou rebalanceamento
 
 ### Overhead de Memória:
-- Cada nó de árvore requer mais ponteiros (left, right, parent, height)
 - Consumo maior de memória comparedo com listas simples
 
 ### Custo Operacional:
-- Rotações em AVL adicionam overhead nas operações de inserção/remoção
 - Para poucos elementos, o custo pode não justificar o benefício
 
 
 ##  Conclusão:
-A substituição é **viável técnicamente** e traz benefícios de desempenho em cenários de alta colisão, mas introduz complexidade adicional.
+Só é vantajoso se a tabela hash tem muitas colisões concentradas em algumas posições ou se operação de busca precisa ser extremamente eficiente.
